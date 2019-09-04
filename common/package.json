@@ -1,0 +1,18 @@
+{
+  "name": "@jdrouet/come-on",
+  "version": "1.0.0",
+  "description": "Generic toolset made to wait for something to be ready",
+  "main": "source/index.js",
+  "scripts": {
+    "coverage": "nyc mocha",
+    "test": "mocha"
+  },
+  "author": "Jeremie Drouet <jeremie.drouet@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.4.2"
+  }
+}
