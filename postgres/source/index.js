@@ -1,37 +1,25 @@
+const waitFor = require('@jdrouet/come-on');
 const {Client} = require('pg');
 const config = require('./config');
 
-const wait = (duration) =>
-  new Promise((resolve) => setTimeout(resolve, duration));
-
-const test = () => {
+const check = () => {
   const client = new Client(config.get('postgres'));
   return client.connect()
     .then(() => client.query('SELECT NOW()'))
     .then(() => client.end());
 };
 
-const iterate = async (retry) => {
-  if (retry <= 0) {
-    throw new Error('Too many retries');
-  }
-  try {
-    await test();
-  } catch (err) {
-    console.error(err.message);
-    await wait(config.get('interval'))
-    await iterate(retry - 1);
-  }
-}
-
-const run = () =>
-  iterate(config.get('retry'));
+const run = () => {
+  const options = {
+    interval: config.get('interval'),
+    retry: config.get('retry'),
+  };
+  return waitFor(options, check);
+};
 
 module.exports = {
-  iterate,
+  check,
   run,
-  test,
-  wait,
 };
 
 /* istanbul ignore if */

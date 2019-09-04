@@ -1,6 +1,6 @@
 {
-  "name": "come-on-postgres",
-  "version": "1.0.1",
+  "name": "@jdrouet/come-on-postgres",
+  "version": "1.0.0",
   "description": "Wait for postgres to be ready",
   "main": "source/index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "author": "Jeremie Drouet <jeremie.drouet@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@jdrouet/come-on": "^1.0.0",
     "nconf": "^0.10.0",
     "pg": "^7.12.1"
   },
