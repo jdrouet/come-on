@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    networks:
+      - net-pg
+
+  wait-for-pg:
+    build:
+      context: ./postgres
+    networks:
+      - net-pg
+    depends_on:
+      - postgres
+    environment:
+      postgres_connectionString: postgres://postgres@postgres/postgres
+
+networks:
+  net-pg:
