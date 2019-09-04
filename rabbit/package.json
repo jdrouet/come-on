@@ -1,0 +1,24 @@
+{
+  "name": "@jdrouet/come-on-rabbit",
+  "version": "1.0.0",
+  "description": "Wait for rabbit to be ready",
+  "main": "source/index.js",
+  "scripts": {
+    "coverage": "nyc mocha",
+    "start": "node source/index.js",
+    "test": "mocha"
+  },
+  "author": "Jeremie Drouet <jeremie.drouet@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@jdrouet/come-on": "^1.0.0",
+    "amqplib": "^0.5.5",
+    "nconf": "^0.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "sinon": "^7.4.2"
+  }
+}
