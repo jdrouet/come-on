@@ -1,17 +1,17 @@
 const waitFor = require('@jdrouet/come-on');
 const amqp = require('amqplib');
-const config = require('./config');
 
-const check = () =>
-  amqp.connect(config.get('rabbit'))
+const check = (options) => () =>
+  amqp.connect(options)
     .then((con) => con.close());
 
-const run = () => {
-  const options = {
-    interval: config.get('interval'),
-    retry: config.get('retry'),
+const run = (options) => {
+  const waitOpts = {
+    debug: options.debug || null,
+    interval: options.interval,
+    retry: options.retry,
   };
-  return waitFor(options, check);
+  return waitFor(waitOpts, check(options.rabbit));
 };
 
 module.exports = {
@@ -21,7 +21,8 @@ module.exports = {
 
 /* istanbul ignore if */
 if (!module.parent) {
-  run().then(() => {
+  const config = require('./config');
+  run(config.get()).then(() => {
     console.log('connection ready');
     process.exit(0);
   }).catch((err) => {
