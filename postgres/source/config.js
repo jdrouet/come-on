@@ -1,6 +1,8 @@
 module.exports = require('nconf')
   .use('memory')
-  .env('_')
+  .env({
+    separator: '_',
+  })
   .defaults({
     interval: 1000,
     retry: 60,
